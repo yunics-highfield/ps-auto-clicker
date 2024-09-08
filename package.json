@@ -1,0 +1,11 @@
+{
+  "name": "ps-auto-clicker",
+  "version": "1.0.0",
+  "main": "auto-clicker.ps1",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yunics Highfield",
+  "license": "MIT",
+  "description": ""
+}
