@@ -1,3 +1,4 @@
+Add-Type -AssemblyName System.Windows.Forms
 $signature = @'
 [DllImport("user32.dll")]
 public static extern int SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
@@ -29,11 +30,11 @@ $INPUT_MOUSE = 0
 $MOUSEEVENTF_LEFTDOWN = 0x0002
 $MOUSEEVENTF_LEFTUP = 0x0004
 
-# Coordinates (adjust these as needed)
-$x = 450
-$y = 420
+Start-Sleep -Seconds 3
 
-Start-Sleep -Seconds 1
+# Move your cursor to the desired coordinates in 3 seconds
+$x = [System.Windows.Forms.Cursor]::Position.X
+$y = [System.Windows.Forms.Cursor]::Position.Y
 
 # Main loop
 while ($true) {
