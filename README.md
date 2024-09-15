@@ -10,4 +10,4 @@ You can end the auto clicker by pressing `Ctrl + C`.
 
 # Before using this script
 
-**Note**: You may need to execute `Set-ExecutionPolicy RemoteSigned` to run downloaded scripts.
+**Note**: Once you may need to execute `Set-ExecutionPolicy RemoteSigned` to run the script.
