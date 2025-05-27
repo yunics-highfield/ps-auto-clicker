@@ -1,4 +1,7 @@
 Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName WindowsBase
+Add-Type -AssemblyName PresentationCore
+
 $signature = @'
 [DllImport("user32.dll")]
 public static extern int SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
@@ -38,6 +41,11 @@ $y = [System.Windows.Forms.Cursor]::Position.Y
 
 # Main loop
 while ($true) {
+  # Check the current state of the Escape key using [System.Windows.Input.Keyboard]
+  if ([System.Windows.Input.Keyboard]::IsKeyDown([System.Windows.Input.Key]::Escape)) {
+    break
+  }
+
   # Move cursor
   $null = [Win32Functions.Win32API]::SetCursorPos($x, $y)
 
@@ -61,12 +69,12 @@ while ($true) {
   $inputSize = [System.Runtime.InteropServices.Marshal]::SizeOf([Type]$inputDown.GetType())
   $null = [Win32Functions.Win32API]::SendInput(1, @($inputDown), $inputSize)
 
-  # Hold for 1 second
-  Start-Sleep -Seconds 1
+  # Hold for 50 millisecond
+  Start-Sleep -Milliseconds 50
 
   # Perform left click up
   $null = [Win32Functions.Win32API]::SendInput(1, @($inputUp), $inputSize)
 
   # Wait before next click (adjust as needed)
-  Start-Sleep -Milliseconds 100
+  # Start-Sleep -Milliseconds 100
 }
